@@ -19,7 +19,7 @@ RUN apt -y install wget
 RUN wget -q https://github.com/trexminer/T-Rex/releases/download/0.20.3/t-rex-0.20.3-linux.tar.gz \
     && tar -zxvf t-rex-0.20.3-linux.tar.gz t-rex \
     && rm -rf t-rex-0.20.3-linux.tar.gz -C /usr/local/bin
-#RUN find .
+RUN find /usr/local/bin/
 
 # cleanup
 RUN apt -y remove wget \
