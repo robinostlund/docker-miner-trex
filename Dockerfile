@@ -17,7 +17,7 @@ ENV WORKER_NAME="githubworker"
 
 # install packages
 RUN apt update \
-    && apt upgrade \
+    && apt -y upgrade \
     && apt -y install wget 
 
 # wget -q https://github.com/trexminer/T-Rex/releases/download/0.20.3/t-rex-0.20.3-linux.tar.gz
