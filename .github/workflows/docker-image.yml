@@ -27,13 +27,16 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          context: ./
-          file: ./Dockerfile
+          #context: ./
+          #file: ./Dockerfile
           push: false
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/simplewhale:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/miner-trex-cuda:latest
           build-args: |
             TREX_VERSION=0.20.3
             NVIDIA_CUDA_VERSION=11.2.0
+
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
 
 
     # - name: Build the Docker image
