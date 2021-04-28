@@ -9,6 +9,12 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        trex_version:
+          - "0.20.3"
+        cuda_version:
+          - "11.2.0"
     steps:
       - name: Checko Out Repo
         uses: actions/checkout@v2
@@ -38,8 +44,8 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/miner-trex-cuda:latest
           build-args: |
-            TREX_VERSION=0.20.3
-            NVIDIA_CUDA_VERSION=11.2.0
+            TREX_VERSION=${{ matrix.trex_version }}
+            NVIDIA_CUDA_VERSION=${{ matrix.cuda_version }}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
