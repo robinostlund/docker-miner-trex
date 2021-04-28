@@ -12,9 +12,6 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        trex_version:
-          # must be latest otherwise latest tag wont work
-          - "0.20.3"
         cuda_version:
           - "11.3.0"
           - "11.2.1"
@@ -32,14 +29,18 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Read VERSION file
+        id: getversion
+        run: echo "::set-output name=version::$(cat VERSION)"
+
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/miner-trex-cuda:v${{ matrix.trex_version }}-cuda-${{ matrix.cuda_version }}, ${{ secrets.DOCKERHUB_USERNAME }}/miner-trex-cuda:latest-cuda-${{ matrix.cuda_version }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/miner-trex-cuda:v${{ steps.getversion.outputs.version }}-cuda-${{ matrix.cuda_version }}, ${{ secrets.DOCKERHUB_USERNAME }}/miner-trex-cuda:latest-cuda-${{ matrix.cuda_version }}
           build-args: |
-            TREX_VERSION=${{ matrix.trex_version }}
+            TREX_VERSION=${{ steps.getversion.outputs.version }}
             NVIDIA_CUDA_VERSION=${{ matrix.cuda_version }}
 
       - name: Get image digest
