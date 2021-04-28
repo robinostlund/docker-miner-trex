@@ -6,23 +6,9 @@ on:
       - master
 
 jobs:
-  get-matrix:
-    runs-on: ubuntu-latest
-    name: Fetch matrix
-    steps:
-      - name: Check out repo
-        uses: actions/checkout@v2
-
-      - name: Read matrix file
-        id: set-matrix
-        run: echo "::set-output name=matrix::$(cat SETTINGS.json | sed 's/ //g')"
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
-
   docker_images:
     runs-on: ubuntu-latest
     name: Build and push image
-    needs: get-matrix
     strategy:
       fail-fast: true
       matrix:
@@ -45,7 +31,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
 
       - name: Build and push
         id: docker_build
