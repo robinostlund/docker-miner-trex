@@ -16,22 +16,15 @@ ENV USERNAME=0xD0469ac9d8935EBffb706EDc9D45a9c522d04f13
 ENV PASSWORD=x
 ENV WORKER_NAME=githubworker
 
-# WORKDIR /root
-
 # install packages
 RUN apt update \
-    && apt -y install wget 
-
-# wget -q https://github.com/trexminer/T-Rex/releases/download/0.20.3/t-rex-0.20.3-linux.tar.gz
-
-RUN echo "https://github.com/trexminer/T-Rex/releases/download/$TREX_VERSION/$TREX_TAR_FILE"
+    && apt -y install wget
 
 # fetch t-rex and unpack it
 RUN cd /tmp \
     && wget -q https://github.com/trexminer/T-Rex/releases/download/$TREX_VERSION/$TREX_TAR_FILE \
     && tar -zxvf $TREX_TAR_FILE t-rex -C /usr/local/bin \
     && rm -rf $TREX_TAR_FILE
-RUN find /usr/local/bin/
 
 # cleanup
 RUN apt -y remove wget \
