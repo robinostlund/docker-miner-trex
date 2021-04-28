@@ -9,13 +9,14 @@ on:
 jobs:
   docker_images:
     runs-on: ubuntu-latest
+    env:
+      TREX_VERSION: "0.20.3"
     strategy:
       fail-fast: true
       matrix:
-        trex_version:
-          - "0.20.3"
-          # - "0.20.1"
-          # - "0.20.0"
+        # should only be latest, otherwise it will set wrong latest tag.
+        # trex_version:
+        #   - "0.20.3"
         cuda_version:
           - "11.3.0"
           - "11.2.1"
@@ -50,9 +51,9 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/miner-trex-cuda:v${{matrix.trex_version}}_cuda${{ matrix.cuda_version }}, ${{ secrets.DOCKERHUB_USERNAME }}/miner-trex-cuda:latest_cuda${{ matrix.cuda_version }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/miner-trex-cuda:v${{ env.TREX_VERSION }}-cuda-${{ matrix.cuda_version }}, ${{ secrets.DOCKERHUB_USERNAME }}/miner-trex-cuda:latest-cuda-${{ matrix.cuda_version }}
           build-args: |
-            TREX_VERSION=${{ matrix.trex_version }}
+            TREX_VERSION=${{ env.TREX_VERSION }}
             NVIDIA_CUDA_VERSION=${{ matrix.cuda_version }}
 
       - name: Image digest
