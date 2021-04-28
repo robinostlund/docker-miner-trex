@@ -16,7 +16,7 @@ RUN wget -q https://github.com/trexminer/T-Rex/releases/download/0.20.3/t-rex-0.
 RUN find .
 
 # cleanup
-RUN apt remove wget
+RUN apt -y remove wget
 
 ENV ETH_ADDRESS=0xD0469ac9d8935EBffb706EDc9D45a9c522d04f13
 ENV SERVER=eu1.ethermine.org:5555
