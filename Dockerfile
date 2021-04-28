@@ -27,9 +27,6 @@ RUN cd /tmp \
     && mv t-rex /usr/local/bin \
     && rm -rf $TREX_TAR_FILE
 
-# test t-rex
-RUN /usr/local/bin/t-rex --version
-
 # cleanup
 RUN apt -y remove wget \
     && apt -y autoremove
