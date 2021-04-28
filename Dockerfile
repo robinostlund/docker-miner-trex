@@ -3,6 +3,9 @@ FROM nvidia/cuda:11.2.0-base-ubuntu18.04
 
 LABEL Robin Ostlund <me@robinostlund.name>
 
+ARG TREX_VERSION=0.20.3
+ARG TREX_TAR_FILE=t-rex-0.20.3-linux.tar.gz
+
 ENV ALGO=ethash
 ENV SERVER=stratum+tcp://eu1.ethermine.org:4444
 ENV USERNAME=0xD0469ac9d8935EBffb706EDc9D45a9c522d04f13
@@ -15,10 +18,13 @@ ENV WORKER_NAME=githubworker
 RUN apt update
 RUN apt -y install wget 
 
+# wget -q https://github.com/trexminer/T-Rex/releases/download/0.20.3/t-rex-0.20.3-linux.tar.gz
+
 # fetch t-rex and unpack it
-RUN wget -q https://github.com/trexminer/T-Rex/releases/download/0.20.3/t-rex-0.20.3-linux.tar.gz \
-    && tar -zxvf t-rex-0.20.3-linux.tar.gz t-rex \
-    && rm -rf t-rex-0.20.3-linux.tar.gz -C /usr/local/bin
+RUN cd /tmp \
+    && wget -q https://github.com/trexminer/T-Rex/releases/download/$TREX_VERSION/$TREX_TAR_FILE \
+    && tar -zxvf $TREX_TAR_FILE t-rex -C /usr/local/bin \
+    && rm -rf $TREX_TAR_FILE
 RUN find /usr/local/bin/
 
 # cleanup
