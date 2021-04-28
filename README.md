@@ -26,9 +26,23 @@ Sat Jan  9 12:17:02 2021
 +-----------------------------------------------------------------------------+
 ```
 
-
 ## Test
+```sh
+docker pull robostlund/miner-trex-cuda:v0.20.3_cuda_11.2.0
+docker run -it --runtime=nvidia --rm robostlund/miner-trex-cuda:v0.20.3_cuda_11.2.0 t-rex --help
 ```
-nvidia-docker pull robostlund/miner-trex-cuda:v0.20.3_cuda_11.2.0
-nvidia-docker run -it --rm robostlund/miner-trex-cuda:v0.20.3_cuda_11.2.0 t-rex --help
+
+# Start
+```sh
+docker pull robostlund/miner-trex-cuda:v0.20.3_cuda_11.2.0
+docker run -dt \
+    --runtime nvidia \
+    --name trex \
+    --publish 4067:4067/tcp \
+    --env ALGO=ethash \
+    --env SERVER=stratum+tcp://eu1.ethermine.org:4444 \
+    --env USERNAME=0xD0469ac9d8935EBffb706EDc9D45a9c522d04f13 \
+    --env PASSWORD=x \
+    --env WORKER_NAME=myworker \
+    robostlund/miner-trex-cuda:v0.20.3_cuda_11.2.0
 ```
