@@ -22,13 +22,16 @@ jobs:
         id: git-check
         run: echo ::set-output name=modified::$([ -z "`git status --porcelain`" ] && echo "false" || echo "true")
 
-      # - name: Commit latest release version
-      #   if: steps.git-check.outputs.modified == 'true'
-      #   run: |
-      #     git config --global user.name 'Your Name'
-      #     git config --global user.email 'your-email@users.noreply.github.com'
-      #     git commit -am "New release version"
-      #     git push
+      - name: Commit latest release version
+        if: steps.git-check.outputs.modified == 'true'
+        run: |
+          git config --global user.name 'T-Rex New Release'
+          git config --global user.email 't-rex-release@users.noreply.github.com'
+          git commit -am "New release version"
+
+      - name: Create Pull Request
+        if: steps.git-check.outputs.modified == 'true'
+        uses: peter-evans/create-pull-request@v3
 
   docker_images:
     runs-on: ubuntu-latest
