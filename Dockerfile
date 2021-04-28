@@ -1,5 +1,5 @@
 #FROM ubuntu:18.04
-FROM nvidia/cuda:11.1-base-ubuntu18.04
+FROM nvidia/cuda:11.3.0-base-ubuntu18.04
 
 LABEL Gershon <gershon@medooza.io>
 
