@@ -19,10 +19,15 @@ RUN find .
 RUN apt -y remove wget \
     && apt -y autoremove
 
-ENV ETH_ADDRESS=0xD0469ac9d8935EBffb706EDc9D45a9c522d04f13
-ENV SERVER=eu1.ethermine.org:5555
+ENV ALGO=ethash
+ENV SERVER=stratum+tcp://eu1.ethermine.org:4444
+ENV USERNAME=0xD0469ac9d8935EBffb706EDc9D45a9c522d04f13
+ENV PASSWORD=x
 ENV WORKER_NAME=githubworker
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
+
+# expose http api
+EXPOSE 4067
 ENTRYPOINT /entrypoint.sh
