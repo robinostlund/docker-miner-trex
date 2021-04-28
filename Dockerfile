@@ -5,14 +5,18 @@ LABEL Robin Ostlund <me@robinostlund.name>
 
 WORKDIR /root
 
+# instal packages
 RUN apt update
 RUN apt -y install wget 
 
 # fetch t-rex and unpack it
-RUN wget https://github.com/trexminer/T-Rex/releases/download/0.20.3/t-rex-0.20.3-linux.tar.gz \
+RUN wget -q https://github.com/trexminer/T-Rex/releases/download/0.20.3/t-rex-0.20.3-linux.tar.gz \
     && tar -zxvf t-rex-0.20.3-linux.tar.gz t-rex \
     && rm -rf t-rex-0.20.3-linux.tar.gz
 RUN find .
+
+# cleanup
+RUN apt remove wget
 
 ENV ETH_ADDRESS=0xD0469ac9d8935EBffb706EDc9D45a9c522d04f13
 ENV SERVER=eu1.ethermine.org:5555
