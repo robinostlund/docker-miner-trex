@@ -1,4 +1,4 @@
-name: Get latest t-rex release
+name: Get latest release
 on:
   schedule:
     - cron: '0 10 * * *'
