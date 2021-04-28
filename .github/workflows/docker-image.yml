@@ -31,7 +31,7 @@ jobs:
           file: ./Dockerfile
           push: false
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/simplewhale:latest
-          build_args: |
+          build-args: |
             TREX_VERSION="0.20.3"
             NVIDIA_CUDA_VERSION="11.2.0"
 
