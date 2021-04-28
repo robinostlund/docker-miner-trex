@@ -14,8 +14,8 @@ jobs:
       matrix:
         trex_version:
           - "0.20.3"
-          - "0.20.1"
-          - "0.20.0"
+          # - "0.20.1"
+          # - "0.20.0"
         cuda_version:
           - "11.3.0"
           - "11.2.1"
@@ -50,7 +50,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/miner-trex-cuda:v${{matrix.trex_version}}_cuda${{ matrix.cuda_version }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/miner-trex-cuda:v${{matrix.trex_version}}_cuda${{ matrix.cuda_version }}, ${{ secrets.DOCKERHUB_USERNAME }}/miner-trex-cuda:latest_cuda${{ matrix.cuda_version }}
           build-args: |
             TREX_VERSION=${{ matrix.trex_version }}
             NVIDIA_CUDA_VERSION=${{ matrix.cuda_version }}
