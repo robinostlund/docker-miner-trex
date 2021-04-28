@@ -28,7 +28,7 @@ RUN cd /tmp \
     && rm -rf $TREX_TAR_FILE
 
 # cleanup
-RUN apt -y remove wget base-files \
+RUN apt -y remove wget \
     && apt -y autoremove
 
 COPY entrypoint.sh /entrypoint.sh
