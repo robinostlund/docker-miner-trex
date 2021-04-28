@@ -13,10 +13,11 @@ jobs:
     name: Fetch matrix
     steps:
       - name: Read matrix file
-        id: getmatrix
+        id: set-matrix
         run: echo "::set-output name=matrix::$(cat BUILD_MATRIX.json)"
     outputs:
-      matrix: ${{ steps.getmatrix.outputs.matrix }}
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+
   docker_images:
     runs-on: ubuntu-latest
     name: Build and push image
