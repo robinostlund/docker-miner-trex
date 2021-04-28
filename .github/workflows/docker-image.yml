@@ -46,7 +46,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/miner-trex-cuda:${{matrix.trex_version}}_cuda${{ matrix.cuda_version }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/miner-trex-cuda:v${{matrix.trex_version}}_cuda${{ matrix.cuda_version }}
           build-args: |
             TREX_VERSION=${{ matrix.trex_version }}
             NVIDIA_CUDA_VERSION=${{ matrix.cuda_version }}
