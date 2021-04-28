@@ -8,26 +8,26 @@ on:
     #   - "/VERSION"
 
 jobs:
-  matrix:
+  get-matrix:
     runs-on: ubuntu-latest
     name: Fetch matrix
     steps:
       - name: Read matrix file
         id: set-matrix
-        run: echo "::set-output name=matrix::$(cat BUILD_MATRIX.json)"
+        run: echo "::set-output name=matrix::$(cat SETTINGS.json)"
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
 
   docker_images:
     runs-on: ubuntu-latest
     name: Build and push image
-    needs: matrix
+    needs: get-matrix
     # env:
     #   DOCKER_REPO: "${{ secrets.DOCKERHUB_USERNAME }}/miner-trex-cuda"
     # #  TREX_VERSION: "0.20.3"
     strategy:
       fail-fast: true
-      matrix: ${{ fromJson(needs.matrix.outputs.matrix) }}
+      matrix: ${{ fromJson(needs.get-matrix.outputs.matrix) }}
         # cuda_version:
         #   - "11.3.0"
         #   - "11.2.1"
