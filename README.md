@@ -1,13 +1,13 @@
 ![Build Docker Image workflow](https://github.com/robinostlund/docker-miner-trex/actions/workflows/docker-image.yml/badge.svg)
 
-## Cuda Version
+## CUDA Version
 To be able to see which cuda version you are running, run `nvidia-smi`:
 
 ```
 nvidia-smi
 Sat Jan  9 12:17:02 2021       
 +-----------------------------------------------------------------------------+
-| NVIDIA-SMI 450.51.06    Driver Version: 450.51.06    CUDA Version: 11.1     |
+| NVIDIA-SMI 450.51.06    Driver Version: 450.51.06    CUDA Version: 11.2     |
 |-------------------------------+----------------------+----------------------+
 | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
 | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
@@ -23,4 +23,12 @@ Sat Jan  9 12:17:02 2021
 |  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
 |        ID   ID                                                   Usage      |
 |=============================================================================|
-+-----
++-----------------------------------------------------------------------------+
+```
+
+
+## Test
+```
+nvidia-docker pull robostlund/miner-trex-cuda:v0.20.3_cuda_11.2.0
+nvidia-docker run -it --rm robostlund/miner-trex-cuda:v0.20.3_cuda_11.2.0 t-rex --help
+```
