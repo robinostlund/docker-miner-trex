@@ -2,7 +2,7 @@
 
 # T-Rex NVIDIA GPU miner (Ethash / Kawpow / Octopus / MTP)
 Original repository: https://github.com/trexminer/T-Rex
-Requires nvidia runtime
+Requires nvidia runtime installed on your docker host
 
 ## CUDA Version
 To be able to see which cuda version you are running, run `nvidia-smi`:
