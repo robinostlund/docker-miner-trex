@@ -1,17 +1,17 @@
-ARG TREX_VERSION="0.20.3"
-ARG TREX_TAR_FILE="t-rex-${TREX_VERSION}-linux.tar.gz"
-ARG NVIDIA_CUDA_VERSION="11.2.0"
-ARG NVIDIA_CUDA_IMAGE_TAG="${NVIDIA_CUDA_VERSION}-base-ubuntu18.04"
-FROM nvidia/cuda:$NVIDIA_CUDA_IMAGE_TAG
+ARG TREX_VERSION=0.20.3
+#ARG TREX_TAR_FILE=t-rex-${TREX_VERSION}-linux.tar.gz
+ARG NVIDIA_CUDA_VERSION=11.2.0
+#ARG NVIDIA_CUDA_IMAGE_TAG=${NVIDIA_CUDA_VERSION}-base-ubuntu18.04
+FROM nvidia/cuda:$NVIDIA_CUDA_IMAGE_TAG-base-ubuntu18.04
 
 LABEL Robin Ostlund <me@robinostlund.name>
 
 # env variables
-ENV ALGO="ethash"
-ENV SERVER="stratum+tcp://eu1.ethermine.org:4444"
-ENV USERNAME="0xD0469ac9d8935EBffb706EDc9D45a9c522d04f13"
-ENV PASSWORD="x"
-ENV WORKER_NAME="githubworker"
+ENV ALGO=ethash
+ENV SERVER=stratum+tcp://eu1.ethermine.org:4444
+ENV USERNAME=0xD0469ac9d8935EBffb706EDc9D45a9c522d04f13
+ENV PASSWORD=x
+ENV WORKER_NAME=githubworker
 
 # WORKDIR /root
 
@@ -21,13 +21,13 @@ RUN apt update \
 
 # wget -q https://github.com/trexminer/T-Rex/releases/download/0.20.3/t-rex-0.20.3-linux.tar.gz
 
-RUN echo "https://github.com/trexminer/T-Rex/releases/download/$TREX_VERSION/$TREX_TAR_FILE"
+RUN echo "https://github.com/trexminer/T-Rex/releases/download/$TREX_VERSION/t-rex-$TREX_VERSION-linux.tar.gz"
 
 # fetch t-rex and unpack it
 RUN cd /tmp \
-    && wget -q https://github.com/trexminer/T-Rex/releases/download/${TREX_VERSION}/${TREX_TAR_FILE} \
-    && tar -zxvf ${TREX_TAR_FILE} t-rex -C /usr/local/bin \
-    && rm -rf ${TREX_TAR_FILE}
+    && wget -q https://github.com/trexminer/T-Rex/releases/download/$TREX_VERSION/t-rex-$TREX_VERSION-linux.tar.gz \
+    && tar -zxvf t-rex-$TREX_VERSION-linux.tar.gz t-rex -C /usr/local/bin \
+    && rm -rf t-rex-$TREX_VERSION-linux.tar.gz
 RUN find /usr/local/bin/
 
 # cleanup
