@@ -47,6 +47,7 @@ jobs:
   docker_description:
     runs-on: ubuntu-latest
     name: Update dockerhub description
+    needs: docker_images
     steps:
       - name: Check Out Repo
         uses: actions/checkout@v2
