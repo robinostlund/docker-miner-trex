@@ -12,6 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Fetch matrix
     steps:
+      - name: Check out repo
+        uses: actions/checkout@v2
+
       - name: Read matrix file
         id: set-matrix
         run: echo "::set-output name=matrix::$(cat SETTINGS.json)"
@@ -22,9 +25,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and push image
     needs: get-matrix
-    # env:
-    #   DOCKER_REPO: "${{ secrets.DOCKERHUB_USERNAME }}/miner-trex-cuda"
-    # #  TREX_VERSION: "0.20.3"
     strategy:
       fail-fast: true
       matrix: ${{ fromJson(needs.get-matrix.outputs.matrix) }}
