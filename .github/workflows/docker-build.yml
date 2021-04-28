@@ -5,22 +5,9 @@ on:
     branches: [ master ]
 
 jobs:
-  docker_images:
+  docker_init:
     runs-on: ubuntu-latest
-    name: Build and push image
-    # env:
-    #   DOCKER_REPO: "${{ secrets.DOCKERHUB_USERNAME }}/miner-trex-cuda"
-    # #  TREX_VERSION: "0.20.3"
-    strategy:
-      fail-fast: true
-      matrix:
-        cuda_version:
-          - "11.3.0"
-          - "11.2.1"
-          - "11.2.0"
-          - "11.1"
-          - "11.0"
-          - "10.2"
+    name: Initialize
     steps:
       - name: Check out repo
         uses: actions/checkout@v2
@@ -35,6 +22,24 @@ jobs:
         id: getversion
         run: echo "::set-output name=version::$(cat VERSION)"
 
+  docker_images:
+    runs-on: ubuntu-latest
+    name: Build and push image
+    needs: docker_init
+    # env:
+    #   DOCKER_REPO: "${{ secrets.DOCKERHUB_USERNAME }}/miner-trex-cuda"
+    # #  TREX_VERSION: "0.20.3"
+    strategy:
+      fail-fast: true
+      matrix:
+        cuda_version:
+          - "11.3.0"
+          - "11.2.1"
+          - "11.2.0"
+          - "11.1"
+          - "11.0"
+          - "10.2"
+    steps:
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
