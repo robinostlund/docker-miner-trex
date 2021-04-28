@@ -29,3 +29,8 @@ jobs:
       - name: Create Pull Request
         if: steps.git-check.outputs.modified == 'true'
         uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: "New trex version"
+          branch: trex-version-bump
+          delete-branch: true
+          labels: enhancement
