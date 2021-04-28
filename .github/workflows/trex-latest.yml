@@ -1,7 +1,7 @@
-name: Get latest release version
+name: Get latest t-rex release
 on:
   schedule:
-    - cron:  '0 10 * * *'
+    - cron: '0 10 * * *'
 jobs:
   get_version:
     runs-on: ubuntu-latest
@@ -9,20 +9,23 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v2
-        
+
       - name: Fetch release version
         run: |
           curl -sL https://api.github.com/repos/trexminer/t-rex/releases/latest | \
-          jq -r ".tag_name" > release-versions/t-rex-latest.txt
+          jq -r ".tag_name" > release-versions/latest.txt
 
       - name: Check for modified files
         id: git-check
         run: echo ::set-output name=modified::$([ -z "`git status --porcelain`" ] && echo "false" || echo "true")
 
-      # - name: Commit latest release version
-      #   if: steps.git-check.outputs.modified == 'true'
-      #   run: |
-      #     git config --global user.name 'Your Name'
-      #     git config --global user.email 'your-email@users.noreply.github.com'
-      #     git commit -am "New release version"
-      #     git push
+      - name: Commit latest release version
+        if: steps.git-check.outputs.modified == 'true'
+        run: |
+          git config --global user.name 'T-Rex New Release'
+          git config --global user.email 't-rex-release@users.noreply.github.com'
+          git commit -am "New release version"
+
+      - name: Create Pull Request
+        if: steps.git-check.outputs.modified == 'true'
+        uses: peter-evans/create-pull-request@v3
