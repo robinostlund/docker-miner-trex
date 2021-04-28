@@ -1,10 +1,10 @@
-#FROM ubuntu:18.04
-FROM nvidia/cuda:11.2.0-base-ubuntu18.04
+ARG TREX_VERSION=0.20.3
+ARG TREX_TAR_FILE=t-rex-0.20.3-linux.tar.gz
+ARG NVIDIA_CUDA_IMAGE_TAG=11.2.0-base-ubuntu18.04
+FROM nvidia/cuda:$NVIDIA_CUDA_IMAGE_TAG
 
 LABEL Robin Ostlund <me@robinostlund.name>
 
-ARG TREX_VERSION=0.20.3
-ARG TREX_TAR_FILE=t-rex-0.20.3-linux.tar.gz
 
 ENV ALGO=ethash
 ENV SERVER=stratum+tcp://eu1.ethermine.org:4444
