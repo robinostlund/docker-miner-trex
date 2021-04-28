@@ -1,5 +1,9 @@
 ![Build Docker Image workflow](https://github.com/robinostlund/docker-miner-trex/actions/workflows/docker-image.yml/badge.svg)
 
+# T-Rex NVIDIA GPU miner (Ethash / Kawpow / Octopus / MTP)
+Original repository: https://github.com/trexminer/T-Rex
+Requires nvidia runtime
+
 ## CUDA Version
 To be able to see which cuda version you are running, run `nvidia-smi`:
 
@@ -32,7 +36,7 @@ docker pull robostlund/miner-trex-cuda:v0.20.3_cuda_11.2.0
 docker run -it --runtime=nvidia --rm robostlund/miner-trex-cuda:v0.20.3_cuda_11.2.0 t-rex --help
 ```
 
-# Start
+## Start
 ```sh
 docker pull robostlund/miner-trex-cuda:v0.20.3_cuda_11.2.0
 docker run -dt \
