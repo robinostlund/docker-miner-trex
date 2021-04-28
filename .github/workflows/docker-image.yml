@@ -23,8 +23,8 @@ jobs:
           - "11.0"
           - "10.2"
     steps:
-      # - name: Check Out Repo
-      #   uses: actions/checkout@v2
+      - name: Check Out Repo
+        uses: actions/checkout@v2
 
       - name: Set up Docker Buildx
         id: buildx
