@@ -26,6 +26,8 @@ RUN cd /tmp \
     && tar -zxvf $TREX_TAR_FILE t-rex -C /usr/local/bin \
     && rm -rf $TREX_TAR_FILE
 
+RUN find /usr/local/bin
+
 # cleanup
 RUN apt -y remove wget \
     && apt -y autoremove
