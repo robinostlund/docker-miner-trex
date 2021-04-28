@@ -1,6 +1,7 @@
 ARG TREX_VERSION="0.20.3"
-ARG TREX_TAR_FILE="t-rex-$TREX_VERSION-linux.tar.gz"
-ARG NVIDIA_CUDA_IMAGE_TAG="11.2.0-base-ubuntu18.04"
+ARG TREX_TAR_FILE="t-rex-${TREX_VERSION}-linux.tar.gz"
+ARG NVIDIA_CUDA_VERSION="11.2.0"
+ARG NVIDIA_CUDA_IMAGE_TAG="${NVIDIA_CUDA_VERSION}-base-ubuntu18.04"
 FROM nvidia/cuda:$NVIDIA_CUDA_IMAGE_TAG
 
 LABEL Robin Ostlund <me@robinostlund.name>
