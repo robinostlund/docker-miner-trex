@@ -10,10 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     name: Get latest T-Rex version
     steps:
+      - name: Check out repo
+        uses: actions/checkout@v2
+
       - name: Fetch release version
         run: |
           curl -sL https://api.github.com/repos/trexminer/t-rex/releases/latest | \
-          jq -r ".tag_name" > release-versions/t-rex-latest.txt
+          jq -r ".tag_name" > t-rex-latest.txt
 
       - name: Check for modified files
         id: git-check
