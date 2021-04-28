@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - master
-    # paths:
-    #   - "/VERSION"
 
 jobs:
   get-matrix:
@@ -27,14 +25,17 @@ jobs:
     needs: get-matrix
     strategy:
       fail-fast: true
-      matrix: ${{ fromJson(needs.get-matrix.outputs.matrix) }}
-        # cuda_version:
-        #   - "11.3.0"
-        #   - "11.2.1"
-        #   - "11.2.0"
-        #   - "11.1"
-        #   - "11.0"
-        #   - "10.2"
+      matrix:
+        trex_version:
+          # must be latest otherwise latest tag wont work
+          - "0.20.3"
+        cuda_version:
+          - "11.3.0"
+          - "11.2.1"
+          - "11.2.0"
+          - "11.1"
+          - "11.0"
+          - "10.2"
     steps:
       - name: Check out repo
         uses: actions/checkout@v2
@@ -45,9 +46,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # - name: Read VERSION file
-      #   id: getversion
-      #   run: echo "::set-output name=version::$(cat VERSION)"
 
       - name: Build and push
         id: docker_build
