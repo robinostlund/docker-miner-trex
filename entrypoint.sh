@@ -8,5 +8,5 @@ TREX_WORKER_NAME="${WORKER_NAME:=githubworker}"
 
 #cd "$(dirname "$0")"
 
-/usr/local/bin/t-rex -a $TREX_ALGO -o $TREX_SERVER -u $TREX_USERNAME -p $TREX_PASSWORD -w $TREX_WORKER_NAME --api-bind-http 0.0.0.0:4067
+t-rex -a $TREX_ALGO -o $TREX_SERVER -u $TREX_USERNAME -p $TREX_PASSWORD -w $TREX_WORKER_NAME --api-bind-http 0.0.0.0:4067
 

@@ -23,7 +23,8 @@ RUN apt update \
 # fetch t-rex and unpack it
 RUN cd /tmp \
     && wget -q https://github.com/trexminer/T-Rex/releases/download/$TREX_VERSION/$TREX_TAR_FILE \
-    && tar -zxvf $TREX_TAR_FILE t-rex -C /usr/local/bin \
+    && tar -zxvf $TREX_TAR_FILE t-rex \
+    && mv t-rex /usr/local/bin \
     && rm -rf $TREX_TAR_FILE
 
 RUN find /usr/local/bin
