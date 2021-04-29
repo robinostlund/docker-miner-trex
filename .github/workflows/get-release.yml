@@ -30,7 +30,8 @@ jobs:
         if: steps.git-check.outputs.modified == 'true'
         uses: peter-evans/create-pull-request@v3
         with:
-          commit-message: "New trex version"
+          commit-message: "New trex version, pr for bumping version"
           branch: trex-version-bump
           delete-branch: true
           labels: enhancement
+          title: New T-Rex version
