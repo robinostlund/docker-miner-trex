@@ -50,3 +50,17 @@ docker run -dt \
     --env WORKER_NAME=myworker \
     robostlund/miner-trex-cuda:latest_cuda11.2.0
 ```
+
+## OC Settings
+### GTX 1660 Super (Hynix Memory)
+Config: 
+```sh
+nvidia-smi -pm 1
+nvidia-smi -i 0 -pl 80
+nvidia-settings -a [gpu:0]/GPUPowerMizerMode=1
+nvidia-settings -a [gpu:0]/GPUFanControlState=1
+nvidia-settings -a [fan:0]/GPUTargetFanSpeed=70
+nvidia-settings -a [gpu:0]/GPUGraphicsClockOffsetAllPerformanceLevels=-200
+nvidia-settings -a [gpu:0]/GPUMemoryTransferRateOffsetAllPerformanceLevels=-1004
+```
+Result: GPU #0: Gigabyte GTX 1660 SUPER - 31.83 MH/s, [T:69C, P:79W, F:70%, E:403kH/W], 2/2 R:0%
