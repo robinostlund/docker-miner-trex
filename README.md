@@ -9,24 +9,26 @@ To be able to see which cuda version you are running, run `nvidia-smi`:
 
 ```
 nvidia-smi
-Sat Jan  9 12:17:02 2021       
+Sat May  1 20:19:02 2021
 +-----------------------------------------------------------------------------+
-| NVIDIA-SMI 450.51.06    Driver Version: 450.51.06    CUDA Version: 11.2     |
+| NVIDIA-SMI 460.73.01    Driver Version: 460.73.01    CUDA Version: 11.2     |
 |-------------------------------+----------------------+----------------------+
 | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
 | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
 |                               |                      |               MIG M. |
 |===============================+======================+======================|
-|   0  Tesla M60           Off  | 00000000:00:1E.0 Off |                    0 |
-| N/A   49C    P0    73W / 150W |   7618MiB /  7618MiB |    100%      Default |
+|   0  GeForce GTX 166...  On   | 00000000:01:00.0 Off |                  N/A |
+| 70%   70C    P2    79W /  80W |   4392MiB /  5944MiB |    100%      Default |
 |                               |                      |                  N/A |
 +-------------------------------+----------------------+----------------------+
-                                                                               
+
 +-----------------------------------------------------------------------------+
 | Processes:                                                                  |
 |  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
 |        ID   ID                                                   Usage      |
 |=============================================================================|
+|    0   N/A  N/A      5157      G   /usr/lib/xorg/Xorg                  6MiB |
+|    0   N/A  N/A   2720215      C   /usr/local/bin/t-rex             4381MiB |
 +-----------------------------------------------------------------------------+
 ```
 
