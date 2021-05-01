@@ -5,6 +5,8 @@ on:
       - master
     paths:
       - release-versions/latest.txt
+      - Dockerfile
+      - entrypoint.sh
 jobs:
   docker_images:
     runs-on: ubuntu-latest
