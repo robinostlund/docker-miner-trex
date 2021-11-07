@@ -32,6 +32,9 @@ RUN cd /tmp \
 RUN apt -y remove wget \
     && apt -y autoremove
 
+# ugly workaround for lib link
+RUN ln -s /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so
+
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
