@@ -34,13 +34,13 @@ Sat May  1 20:19:02 2021
 
 ## Test
 ```sh
-docker pull robostlund/miner-trex-cuda:latest_cuda11.2.0
-docker run -it --runtime=nvidia --rm robostlund/miner-trex-cuda:latest_cuda11.2.0 t-rex --help
+docker pull robostlund/miner-trex-cuda:latest-cuda-11.2.1
+docker run -it --runtime=nvidia --rm robostlund/miner-trex-cuda:latest-cuda-11.2.1 t-rex --help
 ```
 
 ## Start
 ```sh
-docker pull robostlund/miner-trex-cuda:latest_cuda11.2.0
+docker pull robostlund/miner-trex-cuda:latest-cuda-11.2.1
 docker run -dt \
     --runtime nvidia \
     --name trex \
