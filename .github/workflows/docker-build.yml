@@ -45,7 +45,7 @@ jobs:
 
       - name: Build and push
         id: docker_build
-        uses: docker/build-push-action@v2.10.0
+        uses: docker/build-push-action@v3.1.0
         with:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/miner-trex-cuda:v${{ steps.getversion.outputs.version }}-cuda-${{ matrix.cuda_version }}, ${{ secrets.DOCKERHUB_USERNAME }}/miner-trex-cuda:latest-cuda-${{ matrix.cuda_version }}
