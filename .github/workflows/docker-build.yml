@@ -33,7 +33,7 @@ jobs:
           #- "10.2"
     steps:
       - name: Check out repo
-        uses: actions/checkout@v3.0.2
+        uses: actions/checkout@v3.2.0
 
       - name: Login to dockerhub
         uses: docker/login-action@v2.1.0
@@ -64,7 +64,7 @@ jobs:
     needs: docker_images
     steps:
       - name: Check Out Repo
-        uses: actions/checkout@v3.0.2
+        uses: actions/checkout@v3.2.0
 
       - name: Docker Hub Description
         uses: peter-evans/dockerhub-description@v3.1.1
